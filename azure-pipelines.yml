@@ -15,7 +15,7 @@ steps:
     sudo apt-get update && sudo apt-get install -y terraform
 
     # Clone the repository
-    git clone <repository_url> repo  # Replace with your Git repository URL
+    git clone https://github.com/Shubham1106/azurecicd.git repo  # Replace with your Git repository URL
     cd repo
 
     # Authenticate with Azure
