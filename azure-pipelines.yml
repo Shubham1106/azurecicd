@@ -1,0 +1,28 @@
+trigger:
+  branches:
+    include:
+      - main  # Update with your desired branch
+
+pool:
+  vmImage: 'ubuntu-latest'  # Choose the appropriate image for your pipeline
+
+steps:
+- script: |
+    # Install Terraform
+    sudo apt-get update && sudo apt-get install -y curl unzip
+    curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+    sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+    sudo apt-get update && sudo apt-get install -y terraform
+
+    # Clone the repository
+    git clone <repository_url> repo  # Replace with your Git repository URL
+    cd repo
+
+    # Authenticate with Azure
+    az login --service-principal --username f02545c4-5306-4d5d-95c2-32155a217d57 --password qrX8Q~-ltP84siOUrGvncVBtj4jCHaMvqosoyamX --tenant 7cec1586-3fc7-4379-bbda-fbd23fc9a3c2  # Replace with your Azure credentials
+
+    # Initialize and apply Terraform
+    terraform init
+    terraform validate
+    terraform apply -auto-approve
+  displayName: 'Create Azure Resources'
