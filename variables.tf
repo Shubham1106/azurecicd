@@ -16,7 +16,7 @@ variable "instanceCount" {
 }
 
 variable "client_id" {
-    defualt = "f02545c4-5306-4d5d-95c2-32155a217d57"
+    default = "f02545c4-5306-4d5d-95c2-32155a217d57"
 }
 
 variable "client_secret" {
